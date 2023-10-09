@@ -17,6 +17,11 @@
                     {{ __('You are logged in!') }}
                 </div>
             </div>
+            <div class="m-2">
+            <a class="btn btn-primary" href="{{route('machines.index')}}">Overzicht machines</a>
+            <a class="btn btn-primary" href="{{route('machines.create')}}">Voeg machine toe</a>
+            </div>
+
         </div>
     </div>
 </div>

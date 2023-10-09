@@ -21,7 +21,7 @@ class MachineController extends Controller
      */
     public function create()
     {
-        //
+        return view('machine.create');
     }
 
     /**
@@ -29,7 +29,16 @@ class MachineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'machine_number' => 'required|numeric'
+        ]);
+        $machine = new Machine();
+        $machine->name = $request->input('name');
+        $machine->machine_number = $request->input('machine_number');
+        $machine->save();
+
+        return redirect()->route('machines.index');
     }
 
     /**
@@ -37,7 +46,7 @@ class MachineController extends Controller
      */
     public function show(Machine $machine)
     {
-        //
+        return view('machine.show', compact('machine'));
     }
 
     /**
@@ -45,7 +54,7 @@ class MachineController extends Controller
      */
     public function edit(Machine $machine)
     {
-        //
+        return view('machine.edit', compact('machine'));
     }
 
     /**
@@ -53,7 +62,16 @@ class MachineController extends Controller
      */
     public function update(Request $request, Machine $machine)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'machine_number' => 'required|numeric'
+        ]);
+
+        $machine->name = $request->input('name');
+        $machine->machine_number = $request->input('machine_number');
+        $machine->save();
+
+        return redirect()->route('machines.show', $machine);
     }
 
     /**
