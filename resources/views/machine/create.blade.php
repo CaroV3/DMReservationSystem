@@ -20,7 +20,7 @@
                     <div class="alert alert-danger">{{$message}}</div>
                     @enderror
 
-                    <input class="btn btn-primary mt-2" type="submit" value="Submit">
+                    <input class="btn btn-primary mt-2" type="submit" value="Voeg toe">
                 </form>
                 <a class="btn btn-primary mt-2" href="{{route('login')}}">Ga terug</a>
             </div>

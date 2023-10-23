@@ -28,9 +28,14 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+                    @guest
 
+                    @else
+                    <a class="btn btn-primary" href="{{route('machines.index')}}">Machines</a>
+                    <a class="btn btn-primary" href="{{route('appointments.index')}}">Mijn afspraken</a>
+                    @endguest
+
+                    <ul class="navbar-nav me-auto">
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -64,7 +69,12 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+
+                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                        {{ __('Profile') }}
+                                    </a>
                                 </div>
+
                             </li>
                         @endguest
                     </ul>

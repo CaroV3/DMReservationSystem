@@ -79,6 +79,7 @@ class MachineController extends Controller
      */
     public function destroy(Machine $machine)
     {
-        //
+        $machine->delete();
+        return redirect()->route('machines.index');
     }
 }

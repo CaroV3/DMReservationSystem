@@ -14,8 +14,10 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <p>Welkom</p>
+
                 </div>
+
             </div>
             <div class="m-2">
             <a class="btn btn-primary" href="{{route('machines.index')}}">Overzicht machines</a>

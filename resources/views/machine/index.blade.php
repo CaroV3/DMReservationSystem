@@ -10,6 +10,7 @@
                     @endforeach
                 </ul>
                 <a class="btn btn-primary" href="{{route('home')}}">Terug naar home</a>
+                <a class="btn btn-primary" href="{{route('machines.create')}}">Voeg machine toe</a>
             </div>
         </div>
     </div>
