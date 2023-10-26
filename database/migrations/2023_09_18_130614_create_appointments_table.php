@@ -17,10 +17,10 @@ return new class extends Migration
             $table->integer('phone_number');
             $table->string('email', 255);
             $table->string('address', 255);
-            $table->string('type_appointment_id', 11);
             $table->time('time');
-            $table->date('date', 255);
+            $table->date('date');
             $table->text('comment');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
 
         });

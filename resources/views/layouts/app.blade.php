@@ -31,8 +31,10 @@
                     @guest
 
                     @else
-                    <a class="btn btn-primary" href="{{route('machines.index')}}">Machines</a>
-                    <a class="btn btn-primary" href="{{route('appointments.index')}}">Mijn afspraken</a>
+                        <a class="btn text-primary" href="{{route('appointments.index')}}">Mijn afspraken</a>
+                        <a class="btn text-primary" href="{{route('machines.index')}}">Machines</a>
+                        <a class="btn text-primary" href="{{route('profile.index')}}">Medewerkers beheren</a>
+
                     @endguest
 
                     <ul class="navbar-nav me-auto">

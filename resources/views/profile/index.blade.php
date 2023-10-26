@@ -5,20 +5,18 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Mijn afspraken') }}</div>
+                    <div class="card-header">{{ __('Beheer medewerkers') }}</div>
 
                     <div class="card-body">
                         <table style="width:100%">
                             <tr>
-                                <th>Naam</th>
-                                <th>Datum</th>
-                                <th>Tijd</th>
+                                <th>Medewerker</th>
+                                <th>Status</th>
                             </tr>
-                            @foreach($appointments as $appointment)
+                            @foreach($users as $user)
                                 <tr>
-                                    <td><a href="{{route('appointments.show', $appointment)}}">{{$appointment->name}}</a></td>
-                                    <td>{{$appointment->date}}</td>
-                                    <td>{{$appointment->time}}</td>
+                                    <td>{{$user->name}}</td>
+                                    <td><button class="btn btn-primary">Actief</button></td>
                                 </tr>
                             @endforeach
                         </table>

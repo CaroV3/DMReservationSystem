@@ -19,9 +19,16 @@ Route::get('/', [HomeController::class, 'index']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Resource routes
 Route::resource('machines', \App\Http\Controllers\MachineController::class);
-Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+Route::resource('appointments', \App\Http\Controllers\AppointmentController::class);
+
+
+//profile routes
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
+Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
 Route::put('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 
-Route::resource('appointments', \App\Http\Controllers\AppointmentController::class);
+
 

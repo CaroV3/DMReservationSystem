@@ -20,6 +20,13 @@
                     <div class="alert alert-danger">{{$message}}</div>
                     @enderror
 
+                    <p class="mt-3">Kies een categorie</p>
+                    @foreach($categories as $category)
+                        <input type="radio" id="flowers_plants" name="category_id" value="{{$category->id}}">
+                        <label for="flowers_plants">{{$category->name}}</label><br>
+                    @endforeach
+
+
                     <input class="btn btn-primary mt-2" type="submit" value="Opslaan">
                 </form>
                 <a class="btn btn-primary mt-2" href="{{route('machines.show', $machine)}}">Ga terug</a>

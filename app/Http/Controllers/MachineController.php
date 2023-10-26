@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Machine;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class MachineController extends Controller
@@ -12,6 +13,7 @@ class MachineController extends Controller
      */
     public function index()
     {
+
         $machines = Machine::all();
         return view('machine.index', compact('machines'));
     }
@@ -21,7 +23,8 @@ class MachineController extends Controller
      */
     public function create()
     {
-        return view('machine.create');
+        $categories = Category::all();
+        return view('machine.create', compact('categories'));
     }
 
     /**
@@ -31,11 +34,13 @@ class MachineController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'machine_number' => 'required|numeric'
+            'machine_number' => 'required|numeric',
+            'category_id' => 'required'
         ]);
         $machine = new Machine();
         $machine->name = $request->input('name');
         $machine->machine_number = $request->input('machine_number');
+        $machine->category_id = $request->input('category_id');
         $machine->save();
 
         return redirect()->route('machines.index');
@@ -54,7 +59,8 @@ class MachineController extends Controller
      */
     public function edit(Machine $machine)
     {
-        return view('machine.edit', compact('machine'));
+        $categories = Category::all();
+        return view('machine.edit', compact('machine', 'categories'));
     }
 
     /**
@@ -64,11 +70,13 @@ class MachineController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'machine_number' => 'required|numeric'
+            'machine_number' => 'required|numeric',
+            'category_id' => 'required'
         ]);
 
         $machine->name = $request->input('name');
         $machine->machine_number = $request->input('machine_number');
+        $machine->category_id = $request->input('category_id');
         $machine->save();
 
         return redirect()->route('machines.show', $machine);

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('machine_number');
             $table->string('name', 255);
+            $table->foreignId('category_id')->constrained();
             $table->timestamps();
         });
     }
