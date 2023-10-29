@@ -31,10 +31,14 @@
                     @guest
 
                     @else
-                        <a class="btn text-primary" href="{{route('appointments.index')}}">Mijn afspraken</a>
-                        <a class="btn text-primary" href="{{route('machines.index')}}">Machines</a>
-                        <a class="btn text-primary" href="{{route('profile.index')}}">Medewerkers beheren</a>
-
+                        @if(Auth::user()->role==1)
+                            <a class="btn text-primary" href="{{route('appointments.index')}}">Mijn afspraken</a>
+                            <a class="btn text-primary" href="{{route('machines.index')}}">Machines</a>
+                            <a class="btn text-primary" href="{{route('admin.index')}}">Medewerkers beheren</a>
+                        @else
+                            <a class="btn text-primary" href="{{route('appointments.index')}}">Mijn afspraken</a>
+                            <a class="btn text-primary" href="{{route('machines.index')}}">Machines</a>
+                        @endif
                     @endguest
 
                     <ul class="navbar-nav me-auto">

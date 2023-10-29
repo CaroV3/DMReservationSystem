@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('machines', function (Blueprint $table) {
             $table->id();
-            $table->integer('machine_number');
+            $table->Integer('machine_number');
             $table->string('name', 255);
             $table->foreignId('category_id')->constrained();
             $table->timestamps();

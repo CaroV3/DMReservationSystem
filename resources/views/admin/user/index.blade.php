@@ -16,7 +16,19 @@
                             @foreach($users as $user)
                                 <tr>
                                     <td>{{$user->name}}</td>
-                                    <td><button class="btn btn-primary">Actief</button></td>
+                                    <td>
+                                        <form action="{{route('admin.toggle', $user)}}" method="POST">
+                                            @method('PUT')
+                                            @csrf
+                                            @if($user->status===1)
+                                                <input type="hidden" id="status" name="status" value="2">
+                                                <input class="btn btn-primary mt-2" type="submit" value="Actief">
+                                            @else
+                                                <input type="hidden" id="status" name="status" value="1">
+                                                <input class="btn btn-outline-primary mt-2" type="submit" value="Niet actief">
+                                            @endif
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </table>

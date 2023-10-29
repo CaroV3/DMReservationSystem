@@ -25,10 +25,14 @@ Route::resource('machines', \App\Http\Controllers\MachineController::class);
 Route::resource('appointments', \App\Http\Controllers\AppointmentController::class);
 
 
-//profile routes
-Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
+//Profile routes
 Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
 Route::put('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 
+//Admin routes
+Route::get('/admin', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.index')->middleware(['auth', 'admin']);
+Route::put('/admin/toggle/{user}', [\App\Http\Controllers\Admin\UserController::class, 'toggle'])->name('admin.toggle')->middleware(['auth', 'admin']);
 
-
+//machine search route
+Route::post('/machine/search', [\App\Http\Controllers\MachineController::class, 'search'])->name('machines.search');
+Route::post('/machine/filter', [\App\Http\Controllers\MachineController::class, 'filter'])->name('machines.filter');

@@ -11,11 +11,17 @@ class MachineController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index', 'show', 'search', 'filter');
+    }
+
     public function index()
     {
-
+        $categories = Category::all();
         $machines = Machine::all();
-        return view('machine.index', compact('machines'));
+        return view('machine.index', compact('machines', 'categories'));
     }
 
     /**
@@ -90,4 +96,28 @@ class MachineController extends Controller
         $machine->delete();
         return redirect()->route('machines.index');
     }
+
+    public function search(Request $request)
+    {
+        $categories = Category::all();
+        $machines = Machine::where('name', 'LIKE', '%' . $request->input('search') . '%')
+            ->orWhere('machine_number', 'LIKE', '%' . $request->input('search') . '%')
+            ->get();
+
+        return view('machine.index', compact('machines', 'categories'));
+    }
+
+    public function filter(Request $request)
+    {
+//        dd($request->input('filter'));
+        $categories = Category::all();
+        $machines = Machine::where('category_id', '=', $request->input('filter'))
+            ->get();
+
+        return view('machine.index', compact('machines', 'categories'));
+    }
+
+
+
 }
+
