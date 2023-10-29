@@ -2,8 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Appointment;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserHasEnoughAppointments
@@ -15,6 +18,14 @@ class UserHasEnoughAppointments
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        $appointments = Appointment::where('user_id', '=', Auth::user()->id)
+            ->get();
+        $count = count($appointments);
+        if ($count >= 3) {
+            return $next($request);
+        }
+
+        throw ValidationException::withMessages(['machines' => 'Je hebt nog niet genoeg afspraken staan om een machine toe te voegen.']);
+
     }
 }

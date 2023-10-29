@@ -6,8 +6,11 @@
         @guest
         @else
             <a class="btn btn-primary" href="{{route('machines.create')}}">Voeg machine toe</a>
+            @error('machines')
+            <div class="alert alert-danger">{{$message}}</div>
+            @enderror
         @endguest
-        <form id="search" class="form-inline m-2" action="{{route('machines.search')}}" method="POST">
+        <form id="search" class="form-inline m-2" action="{{route('machines.search')}}" method="GET">
             @csrf
             <div class="form-group">
                 <div class="input-group">
@@ -20,7 +23,7 @@
         <div class="m-2 d-flex flex-row flex-wrap gap-2">
             <strong class="m-2">Filter hier op categorie:</strong>
             @foreach($categories as $category)
-                <form action="{{route('machines.filter')}}" method="POST">
+                <form action="{{route('machines.filter')}}" method="GET">
                     @csrf
                     <input type="hidden" name="filter" value="{{$category->id}}">
                     <input class="btn btn-secondary" type="submit" value="{{$category->name}}">

@@ -15,6 +15,8 @@ class MachineController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('index', 'show', 'search', 'filter');
+        $this->middleware('three.appointments')->except('index', 'show', 'search', 'filter', 'edit', 'update', 'destroy');
+
     }
 
     public function index()
@@ -109,7 +111,6 @@ class MachineController extends Controller
 
     public function filter(Request $request)
     {
-//        dd($request->input('filter'));
         $categories = Category::all();
         $machines = Machine::where('category_id', '=', $request->input('filter'))
             ->get();

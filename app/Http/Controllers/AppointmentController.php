@@ -44,7 +44,7 @@ class AppointmentController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'phone_number' => 'required',
+            'phone_number' => 'required|numeric',
             'time' => 'required',
             'date' => 'required',
             'user_id' => 'required'
